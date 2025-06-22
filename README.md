@@ -69,14 +69,6 @@ CONTENT_LAYER = [('block5_conv4', 1)]
 
 ---
 
-## 🖼️ Visual Results
-
-| Content Image | Style Image | Generated Image |
-|---------------|-------------|------------------|
-| ![](images/my_content.jpg) | ![](images/my_style.jpg) | ![](output/image_2500.jpg) |
-
----
-
 ## 📚 References
 
 - Leon A. Gatys, Alexander S. Ecker, Matthias Bethge – [A Neural Algorithm of Artistic Style (2015)](https://arxiv.org/abs/1508.06576)
