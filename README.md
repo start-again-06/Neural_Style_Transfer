@@ -1,82 +1,70 @@
-# 🎨 Neural Style Transfer with VGG19
+Neural Style Transfer with VGG19 (TensorFlow/Keras)  
+A comprehensive computer vision project that implements Neural Style Transfer using a pre-trained VGG19 network in TensorFlow and Keras. The project focuses on generating a new image that preserves the semantic content of one image while adopting the artistic style of another through optimization-based feature matching.
 
-This project implements **Neural Style Transfer** using a pre-trained VGG19 network. The goal is to create a new image that preserves the content of one image and the style of another.
+## Features
+- End-to-end neural style transfer pipeline  
+- Content and style representation using deep CNN features  
+- Style extraction using Gram matrix correlations  
+- Weighted combination of content and style objectives  
+- Image optimization using gradient-based methods  
+- Modular and educational implementation  
 
----
+## Model & Framework
+- Model: VGG19 (pre-trained, feature extraction only)  
+- Framework: TensorFlow 2.x / Keras  
+- Task: Neural Style Transfer  
+- Input: Content image and style image  
+- Output: Stylized image combining content and style  
 
-## 📌 Overview
+## Core Components
+- Content cost computation from deep convolutional features  
+- Style cost computation using Gram matrices  
+- Total cost function combining content and style losses  
+- Optimization loop to iteratively update the generated image  
 
-- **Framework**: TensorFlow 2.x & Keras
-- **Model**: Pre-trained VGG19 (feature extraction only)
-- **Objective**: Generate an image that matches content from a content image and style from a style image
+## Loss Formulation
 
----
+Total Loss:  
+J = α · J_content + β · J_style
 
-## 🧠 Key Concepts
 
-### 🖼️ Content Cost
-Captures how different the content of the generated image is from the content image.
+- Content loss measures similarity between generated and content image features  
+- Style loss measures similarity between generated and style image textures  
 
-### 🎨 Style Cost
-Captures how different the style (textures/colors) of the generated image is from the style image, using **Gram Matrices**.
+## Architecture
+- VGG19 network without fully connected layers  
+- Selected convolutional layers for content and style representation  
 
-### 🔀 Total Cost
-Weighted sum of content and style costs:
-```python
-J = alpha * J_content + beta * J_style
-```
+## Style Layers
+- block1_conv1  
+- block2_conv1  
+- block3_conv1  
+- block4_conv1  
+- block5_conv1  
 
----
+## Content Layer
+- block5_conv4  
 
-## 🏗️ Architecture
-- Uses VGG19 without the fully connected top layers
-- Only specific convolution layers are used for computing style/content representations
+## Training & Optimization
+- Generated image initialized as content image plus noise  
+- Gradients computed with respect to generated image  
+- Optimization performed using Adam optimizer  
+- Intermediate stylized images saved at regular intervals  
 
-### 🔹 Style Layers
-```python
-STYLE_LAYERS = [
-    ('block1_conv1', 1.0),
-    ('block2_conv1', 0.8),
-    ('block3_conv1', 0.7),
-    ('block4_conv1', 0.2),
-    ('block5_conv1', 0.1)
-]
-```
+## Dependencies
+- Python 3.x  
+- TensorFlow 2.x  
+- Keras  
+- NumPy  
+- Matplotlib  
+- Pillow  
 
-### 🔸 Content Layer
-```python
-CONTENT_LAYER = [('block5_conv4', 1)]
-```
+## References
+- A Neural Algorithm of Artistic Style – Gatys et al.  
+- Very Deep Convolutional Networks for Large-Scale Image Recognition – Simonyan & Zisserman  
+- TensorFlow Documentation  
+- Keras Applications: VGG19  
 
----
-
-## ⚙️ Usage Steps
-
-1. **Load and Preprocess Images**
-2. **Extract Features Using VGG19**
-3. **Compute Content and Style Costs**
-4. **Define Total Cost Function**
-5. **Optimize Generated Image**
-
----
-
-## 🔄 Training Process
-
-- Initialize generated image (content + noise)
-- Compute gradients of total loss with respect to the generated image
-- Apply optimization (Adam)
-- Save outputs every 250 epochs
-
----
-
-## 📚 References
-
-- Leon A. Gatys, Alexander S. Ecker, Matthias Bethge – [A Neural Algorithm of Artistic Style (2015)](https://arxiv.org/abs/1508.06576)
-- Harish Narayanan – [Convolutional Neural Networks for Artistic Style Transfer](https://harishnarayanan.org/writing/artistic-style-transfer/)
-- Log0 – [TensorFlow Implementation of Neural Style Transfer](https://github.com/log0/neural-style-tf)
-- Karen Simonyan, Andrew Zisserman – [Very Deep Convolutional Networks for Large-Scale Image Recognition (2015)](https://arxiv.org/abs/1409.1556)
-- [MatConvNet – CNNs for MATLAB](http://www.vlfeat.org/matconvnet/)
-- [TensorFlow Documentation](https://www.tensorflow.org/)
-- [Keras Applications: VGG19](https://keras.io/api/applications/vgg/)
-
----
+## License
+This project is intended for educational and research purposes.  
+Free to use and modify with proper attribution.
